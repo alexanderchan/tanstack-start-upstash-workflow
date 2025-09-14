@@ -18,4 +18,6 @@ npx tsx test-workflow.ts
 
 ## Notes
 
-Built `./src/utils/upstash-serve.ts` to wrap workflows like the wrappers from https://github.com/upstash/workflow-js/blob/main/platforms/nextjs.ts and used the docs from 
+Built `./src/utils/upstash-serve.ts` to wrap workflows like the wrappers from https://github.com/upstash/workflow-js/blob/main/platforms/nextjs.ts and used the docs from
+
+The main workflow code is in [src/routes/api/workflows/test.ts](src/routes/api/workflows/test.ts)
