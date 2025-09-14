@@ -12,7 +12,9 @@ async function main() {
 
     const { workflowRunId } = await client.trigger({
       url: URL + "/api/workflows/test",
-      // body: "hello there!", // optional body
+      body: {
+        orderId: "12345",
+      }, // optional body
       //   headers: { ... },             // optional headers
       workflowRunId: "my-workflow" + nanoid(), // optional workflow run id
       retries: 3, // optional retries in the initial request

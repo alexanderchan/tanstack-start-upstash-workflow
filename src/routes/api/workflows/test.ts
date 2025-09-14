@@ -9,14 +9,17 @@ import { serve } from "~/utils/uptstash-serve";
 const testWorkflow: RouteFunction<{ orderId: string }, { ok: true }> = async (
   ctx
 ) => {
+  const initialInput = ctx.requestPayload;
+
   // ctx.requestPayload, ctx.run(...), ctx.call(...), ctx.waitForEvent(...), etc.
   await ctx.run("validate", async () => {
-    console.log("validating..");
+    console.log({ initialInput });
+    console.log("validating workflow step");
   });
 
   await ctx.run("doSomething", async () => {
     // business logic
-    console.log("do something");
+    console.log("some more business logic");
   });
 
   return { ok: true };
