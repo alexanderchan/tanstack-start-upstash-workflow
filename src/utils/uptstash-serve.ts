@@ -7,6 +7,7 @@ import {
   serve as upstashServe,
   type RouteFunction,
   type PublicServeOptions,
+  type InvokableWorkflow,
 } from "@upstash/workflow";
 
 // Use exported types instead of inferring from Parameters<...>
@@ -30,12 +31,12 @@ export function serve<TInitialPayload = unknown, TResult = unknown>(
 }
 
 /** Lightweight holder so you can predeclare and compose multiple workflows. */
-export function createWorkflow<TInitialPayload = unknown, TResult = unknown>(
-  routeFunction: RouteFunction<TInitialPayload, TResult>,
-  options?: PublicServeOptions<TInitialPayload>
-) {
-  return { routeFunction, options } as const;
-}
+export const createWorkflow = <TInitialPayload = unknown, TResult = unknown>(
+  ...params: Parameters<typeof serve<TInitialPayload, TResult>>
+): InvokableWorkflow<TInitialPayload, TResult> => {
+  const [routeFunction, options = {} as PublicServeOptions<TInitialPayload>] = params;
+  return { routeFunction, options, workflowId: undefined };
+};
 
 /**
  * Serve many workflows under one TanStack route, dispatching by pathname.
