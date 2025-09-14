@@ -4,6 +4,8 @@
 npx @upstash/qstash-cli dev
 ```
 
+Update the .env if not already, copy the .env.example to .env and replace the values with those shown in the qstash cli.
+
 then in another terminal start up the app:
 
 ```sh
